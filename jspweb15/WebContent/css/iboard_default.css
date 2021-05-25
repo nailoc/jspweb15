@@ -1,0 +1,30 @@
+#iboard-default-list {
+	display: inline-block; 
+	margin: 0;
+	width: 100%;
+}
+
+#iboard-default-list .iboard-list {
+	float: left; width: 100%; background-color: white;
+}
+#iboard-default-list .iboard-list table { display: table; table-layout: fixed; margin: 0; padding: 0; width: 100%; border: 0; font-size: 13px; border-collapse: collapse; }
+#iboard-default-list .iboard-list table a { color: black; font-weight: normal; text-decoration: none; border: 0; box-shadow: none; font-size: 13px; }
+#iboard-default-list .iboard-list table tr { border: 0; background-color: transparent; transition-duration: 0.3s; }
+#iboard-default-list .iboard-list table td { padding: 10px 0; height: auto; text-align: center; vertical-align: middle; font-size: 13px; }
+#iboard-default-list .iboard-list table td.iboard-list-uid { width: 72px; }
+#iboard-default-list .iboard-list table td.iboard-list-title { width: auto; }
+#iboard-default-list .iboard-list table td.iboard-list-user { width: 80px; }
+#iboard-default-list .iboard-list table td.iboard-list-date { width: 75px; }
+#iboard-default-list .iboard-list table td.iboard-list-vote { width: 55px; }
+#iboard-default-list .iboard-list table td.iboard-list-view { width: 55px; }
+#iboard-default-list .iboard-list thead { background-color: transparent; }
+#iboard-default-list .iboard-list thead tr td { font-weight: bold; color: #545861; border: 0; border-bottom: 2px solid #f1f1f1; }
+#iboard-default-list .iboard-list tbody tr td { word-break: break-all; border: 0; border-bottom: 1px solid #f1f1f1; }
+#iboard-default-list .iboard-list tbody tr:hover { background-color: #f7f7f7; }
+#iboard-default-list .iboard-list tbody tr.iboard-list-notice { background-color: #f4f4f4; }
+#iboard-default-list .iboard-list tbody tr.iboard-list-selected .iboard-default-cut-strings { font-weight: bold; }
+#iboard-default-list .iboard-list tbody td.iboard-list-title { text-align: left; }
+#iboard-default-list .iboard-list tbody td.iboard-list-title img { display: inline; margin: 0; width: auto; height: auto; vertical-align: middle; max-width: 100%; }
+#iboard-default-list .iboard-list tbody td.iboard-list-title .iboard-comments-count { color: #00a8e7; }
+#iboard-default-list .iboard-list tbody td.iboard-list-user img.avatar { display: inline; margin: 0; width: 24px; max-width: none; height: 24px; vertical-align: middle; border-radius: 50%; }
+
