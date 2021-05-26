@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page import="com.hk.jsp.dao.BoardDao" %>
+<%@ page import="com.hk.jsp.vo.BoardVo" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,8 +57,12 @@
 
 	<div id="iboard-default-list">
 		
+		<%
+			BoardDao board = BoardDao.getInstance();			
+			List<BoardVo> result = board.getBoardList();
+		%>
 		<div class="iboard-list-header">
-			<div class="iboard-total-count">전체 20</div>
+			<div class="iboard-total-count">전체 <%=result.size() %></div>
 		
 			<div class="iboard-sort">
 				<form id="iboard-sort-form-1" method="GET" action="noticelist.jsp">
@@ -67,6 +74,7 @@
 				</form>
 			</div>
 		</div>
+		
 		
 		<div class="iboard-list">
 		
@@ -83,15 +91,27 @@
 				</thead>	
 				
 				<tbody>
-					<tr class="iboard-list-notice">
-						<td class="iboard-list-uid">20</td>
-						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
-						<td class="iboard-list-user">admin</td>
-						<td class="iboard-list-date">2020.12.20</td>
-						<td class="iboard-list-vote">100</td>
-						<td class="iboard-list-view">1000</td>
-					</tr>
+				<%
+					for(int i=0; i<result.size(); i++) {
+						BoardVo row = result.get(i);
+						if(i==0) {
+							out.println("<tr class='iboard-list-notice'>");
+						}else{
+							out.println("<tr class=''>");	
+						}
+				%>
 					
+						<td class="iboard-list-uid"><%=row.getNo() %></td>
+						<td class="iboard-list-title"><%=row.getTitle() %></td>
+						<td class="iboard-list-user"><%=row.getWrite_name() %></td>
+						<td class="iboard-list-date"><%=row.getRegdate() %></td>
+						<td class="iboard-list-vote"><%=row.getVotes() %></td>
+						<td class="iboard-list-view"><%=row.getViews() %></td>
+					</tr>
+				<%
+					}
+				%>					
+					<!-- 
 					<tr class="">
 						<td class="iboard-list-uid">19</td>
 						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
@@ -100,88 +120,34 @@
 						<td class="iboard-list-vote">100</td>
 						<td class="iboard-list-view">1000</td>
 					</tr>
-					
-					<tr class="">
-						<td class="iboard-list-uid">18</td>
-						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
-						<td class="iboard-list-user">admin</td>
-						<td class="iboard-list-date">2020.12.20</td>
-						<td class="iboard-list-vote">100</td>
-						<td class="iboard-list-view">1000</td>
-					</tr>
-					
-					<tr class="">
-						<td class="iboard-list-uid">17</td>
-						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
-						<td class="iboard-list-user">admin</td>
-						<td class="iboard-list-date">2020.12.20</td>
-						<td class="iboard-list-vote">100</td>
-						<td class="iboard-list-view">1000</td>
-					</tr>
-					
-					<tr class="">
-						<td class="iboard-list-uid">16</td>
-						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
-						<td class="iboard-list-user">admin</td>
-						<td class="iboard-list-date">2020.12.20</td>
-						<td class="iboard-list-vote">100</td>
-						<td class="iboard-list-view">1000</td>
-					</tr>
-					
-					<tr class="">
-						<td class="iboard-list-uid">15</td>
-						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
-						<td class="iboard-list-user">admin</td>
-						<td class="iboard-list-date">2020.12.20</td>
-						<td class="iboard-list-vote">100</td>
-						<td class="iboard-list-view">1000</td>
-					</tr>
-					
-					<tr class="">
-						<td class="iboard-list-uid">14</td>
-						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
-						<td class="iboard-list-user">admin</td>
-						<td class="iboard-list-date">2020.12.20</td>
-						<td class="iboard-list-vote">100</td>
-						<td class="iboard-list-view">1000</td>
-					</tr>
-					
-					<tr class="">
-						<td class="iboard-list-uid">13</td>
-						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
-						<td class="iboard-list-user">admin</td>
-						<td class="iboard-list-date">2020.12.20</td>
-						<td class="iboard-list-vote">100</td>
-						<td class="iboard-list-view">1000</td>
-					</tr>
-					
-					<tr class="">
-						<td class="iboard-list-uid">12</td>
-						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
-						<td class="iboard-list-user">admin</td>
-						<td class="iboard-list-date">2020.12.20</td>
-						<td class="iboard-list-vote">100</td>
-						<td class="iboard-list-view">1000</td>
-					</tr>
-					
-					<tr class="">
-						<td class="iboard-list-uid">11</td>
-						<td class="iboard-list-title">코로나 백신 개발 3차 임상 실험 완료</td>
-						<td class="iboard-list-user">admin</td>
-						<td class="iboard-list-date">2020.12.20</td>
-						<td class="iboard-list-vote">100</td>
-						<td class="iboard-list-view">1000</td>
-					</tr>
-				</tbody>
+					-->		
 				</tbody>
 				
 			</table>
 		
 		</div>
 		
-		<div>페이네이션 화면</div>
+		<div class="iboard-pagination">
+			<ul class="iboard-pagination-pages">
+				<li class="active"><a href="">1</a></li>
+				<li><a href="">2</a></li>
+				<li class="next-page"><a href="">>></a></li>
+				<li class="last-page"><a here="">마지막</a></li>
+			</ul>
+		</div>
 		
-		<div>검색</div>
+		<div class="iboard-search">
+			<form id="iboard-search-form-1" method="GET" action="noticelist.jsp">
+				<select name="target">
+					<option value="">전체</option>
+					<option value="title">제목</option>
+					<option value="contents">내용</option>
+					<option value="write_name">작성자</option>
+				</select>
+				<input type="text" name="keyword" value="">
+				<button type="submit" class="iboard-default-button-small">검색</button>
+			</form>
+		</div>
 
 	</div>
 

@@ -1,12 +1,16 @@
-#iboard-default-list {
-	display: inline-block; 
-	margin: 0;
-	width: 100%;
+#iboard-default-list .iboard-list-header { float: left; display: table; margin: 0; width: 100%; }
+#iboard-default-list .iboard-list-header .iboard-total-count { float: left; display:table-cell; font-size: 13px; }
+#iboard-default-list .iboard-list-header .iboard-sort { float: right: display:table-cell; text-align: right; }
+#iboard-default-list .iboard-list-header .iboard-sort select {
+	display: inline; margin: 0; padding: 0; width: auto; height: 26px; line-height: 26px;
+	font-size: 12px; color: #666666; border: 1px solid #f1f1f1; 
 }
 
+#iboard-default-list {
+	display: inline-block;	margin: 0;	width: 100%; }
+
 #iboard-default-list .iboard-list {
-	float: left; width: 100%; background-color: white;
-}
+	float: left; width: 100%; background-color: white; }
 #iboard-default-list .iboard-list table { display: table; table-layout: fixed; margin: 0; padding: 0; width: 100%; border: 0; font-size: 13px; border-collapse: collapse; }
 #iboard-default-list .iboard-list table a { color: black; font-weight: normal; text-decoration: none; border: 0; box-shadow: none; font-size: 13px; }
 #iboard-default-list .iboard-list table tr { border: 0; background-color: transparent; transition-duration: 0.3s; }
@@ -28,3 +32,15 @@
 #iboard-default-list .iboard-list tbody td.iboard-list-title .iboard-comments-count { color: #00a8e7; }
 #iboard-default-list .iboard-list tbody td.iboard-list-user img.avatar { display: inline; margin: 0; width: 24px; max-width: none; height: 24px; vertical-align: middle; border-radius: 50%; }
 
+#iboard-default-list .iboard-pagination { float: left; padding: 15px 0; width: 100%; }
+#iboard-default-list .iboard-pagination .iboard-pagination-pages { float: left; margin: 0; padding: 0; width: 100%; list-style: none; text-align: center; border: 0; }
+#iboard-default-list .iboard-pagination .iboard-pagination-pages li { display: inline-block; *display: inline; zoom: 1; margin: 0; padding: 0 1px; background: none; border: 0; list-style: none; }
+#iboard-default-list .iboard-pagination .iboard-pagination-pages li a { display: block; margin: 0; padding: 0 11px; height: 28px; line-height: 28px; font-size: 13px; color: #999999; text-decoration: none; border: 0; background-color: #f9f9f9; box-shadow: none; transition-duration: 0.3s; }
+#iboard-default-list .iboard-pagination .iboard-pagination-pages li:hover a,
+#iboard-default-list .iboard-pagination .iboard-pagination-pages li.active a { border: 0; color: #545861; background-color: #eaeaea; }
+#iboard-default-list .iboard-pagination .iboard-pagination-pages li:before { display: none; }
+#iboard-default-list .iboard-pagination .iboard-pagination-pages li:after { display: none; }
+#iboard-default-list .iboard-search { float: left; padding-bottom: 15px; width: 100%; text-align: center; }
+#iboard-default-list .iboard-search select { display: inline; margin: 0; padding: 0 5px; width: 100px; min-width: 0; max-width: 100px; height: 26px; min-height: 0; font-size: 13px; color: #666666; border-radius: 0; border: 1px solid #f1f1f1; background: none; background-color: white; line-height: 26px; vertical-align: middle; box-shadow: none; box-sizing: content-box; -webkit-appearance: menulist; -moz-appearance: menulist; appearance: menulist; }
+#iboard-default-list .iboard-search input { display: inline; margin: 0; padding: 0 5px; width: 200px; min-width: 0; max-width: 200px; height: 26px; min-height: 0; font-size: 13px; color: #666666; border-radius: 0; border: 1px solid #f1f1f1; background: none; background-color: white; line-height: 26px; vertical-align: middle; box-shadow: none; box-sizing: content-box; }
+#iboard-default-list .iboard-control { float: left; padding-bottom: 15px; width: 100%; text-align: right; }
