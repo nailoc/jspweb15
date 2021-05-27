@@ -48,13 +48,15 @@ public class BoardDao {
 		
 	}
 	
-	public List<BoardVo> getBoardList() throws Exception {
+	public List<BoardVo> getBoardList(String sort, String keyword) throws Exception {
+		//정렬변수
+		//검색어변수
 		List<BoardVo> rst = new ArrayList<BoardVo>();
 		connectDB();
 		//sql
 		String sql = "select no, title, contents, write_name, "
 				+ "TO_CHAR(regdate,'YYYY.MM.DD') as regdate, votes, "
-				+ "views from board order by no desc";
+				+ "views from board where title like '%"+keyword+"%' order by "+sort+ " desc";
 		rs = stmt.executeQuery(sql);
 		while(rs.next()) {
 			BoardVo row = new BoardVo();

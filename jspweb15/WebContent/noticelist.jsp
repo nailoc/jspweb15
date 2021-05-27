@@ -39,7 +39,7 @@
 				</li>
 				<li><a href="">menu_3</a></li>
 				<li><a href="">menu_4</a></li>
-				<li><a href="">Notice & News</a></li>
+				<li><a href="noticelist.jsp">Notice & News</a></li>
 			</ul>
 			</nav>
 		</header>
@@ -58,18 +58,28 @@
 	<div id="iboard-default-list">
 		
 		<%
+			String sortname = request.getParameter("sort");
+			if(sortname==null) {
+				sortname = "no";
+			}
+			String keywordval = request.getParameter("keyword");
+			if(keywordval==null) {
+				keywordval = "";
+			}
+			
 			BoardDao board = BoardDao.getInstance();			
-			List<BoardVo> result = board.getBoardList();
+			List<BoardVo> result = board.getBoardList(sortname, keywordval);
 		%>
 		<div class="iboard-list-header">
 			<div class="iboard-total-count">전체 <%=result.size() %></div>
 		
 			<div class="iboard-sort">
 				<form id="iboard-sort-form-1" method="GET" action="noticelist.jsp">
-					<select name="iboard_list_sort" onchange="">
-					<option value="newest" selected="selected">최신순</option>
-					<option value="best">추천순</option>
-					<option value="viewed">조회순</option>	
+					<select id="iboard_list_sort" name="iboard_list_sort" onchange="sort();">
+					<option value="" selected="selected">정렬선택</option>
+					<option value="no">최신순</option>
+					<option value="votes">추천순</option>
+					<option value="views">조회순</option>	
 					</select>
 				</form>
 			</div>
@@ -102,7 +112,7 @@
 				%>
 					
 						<td class="iboard-list-uid"><%=row.getNo() %></td>
-						<td class="iboard-list-title"><%=row.getTitle() %></td>
+						<td class="iboard-list-title"><a href="noticeshow.jsp"><%=row.getTitle() %></a></td>
 						<td class="iboard-list-user"><%=row.getWrite_name() %></td>
 						<td class="iboard-list-date"><%=row.getRegdate() %></td>
 						<td class="iboard-list-vote"><%=row.getVotes() %></td>
@@ -144,8 +154,8 @@
 					<option value="contents">내용</option>
 					<option value="write_name">작성자</option>
 				</select>
-				<input type="text" name="keyword" value="">
-				<button type="submit" class="iboard-default-button-small">검색</button>
+				<input type="text" id="keyword" name="keyword" value="">
+				<button type="button" class="iboard-default-button-small" onclick="search();">검색</button>
 			</form>
 		</div>
 
@@ -174,6 +184,25 @@
 			}
 		);
 	});
+	
+	//정렬
+	function sort() {
+		var sel = document.getElementById("iboard_list_sort");
+		var sort_val = sel.options[sel.selectedIndex].value;
+		//alert(sort_val);
+		location.href="noticelist.jsp?sort="+sort_val;
+	}
+	//검색
+	function search() {
+		//추가 subject 선택
+		var keyword_val = document.getElementById("keyword").value;
+		var keyword_val_encode = encodeURI(keyword_val); // url주소 한글-인코딩
+		if(keyword_val) {
+			location.href="noticelist.jsp?keyword="+keyword_val_encode;
+		}else{
+			alert("검색어를 입력하시오");
+		}
+	}
 </script>
 </body>
 <script></script>
