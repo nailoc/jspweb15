@@ -48,6 +48,7 @@ public class BoardDao {
 		
 	}
 	
+	//noticelist.jsp
 	public List<BoardVo> getBoardList(String sort, String keyword) throws Exception {
 		//정렬변수
 		//검색어변수
@@ -71,6 +72,33 @@ public class BoardDao {
 		}
 		closeDB();
 		return rst;
+	}
+	
+	// noticeshow.jsp 게시물 읽기
+	public BoardVo getBoardByNo(String no) throws Exception {
+		BoardVo rst = new BoardVo();
+		connectDB();
+		String sql=String.format("select no, title, contents, write_name, TO_CHAR(regdate,'YYYY.MM.DD HH:mm') as regdate, views from board where no='%s'" , no);
+		rs = stmt.executeQuery(sql);
+		while(rs.next()) {
+			rst.setNo(rs.getInt("no"));
+			rst.setTitle(rs.getString("title"));
+			rst.setWrite_name(rs.getString("write_name"));
+			rst.setRegdate(rs.getString("regdate"));
+			rst.setViews(rs.getInt("views"));
+			rst.setContents(rs.getString("contents"));			
+		}
+		closeDB();
+		return rst;
+		
+	}
+	
+	// noticeshow.jsp 조회 1 증가
+	public void increaseBoardNo(String no) throws Exception {
+		connectDB();
+		String sql = String.format("update board set views=views+1 where no='%s'", no);
+		int res = stmt.executeUpdate(sql);
+		closeDB();
 	}
 	
 

@@ -112,7 +112,7 @@
 				%>
 					
 						<td class="iboard-list-uid"><%=row.getNo() %></td>
-						<td class="iboard-list-title"><a href="noticeshow.jsp"><%=row.getTitle() %></a></td>
+						<td class="iboard-list-title"><a href="noticeshow.jsp?no=<%=row.getNo() %>"><%=row.getTitle() %></a></td>
 						<td class="iboard-list-user"><%=row.getWrite_name() %></td>
 						<td class="iboard-list-date"><%=row.getRegdate() %></td>
 						<td class="iboard-list-vote"><%=row.getVotes() %></td>
