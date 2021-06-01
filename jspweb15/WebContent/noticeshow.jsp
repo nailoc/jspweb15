@@ -106,7 +106,7 @@
 					<button>이전글</button></div>
 					
 					<div class="right">
-					<button>추천</button> <button>다음글</button></div>
+					<button type="button" onclick="votes(<%=rowshow.getNo() %>);">추천</button> <button>다음글</button></div>
 				</div>
 			
 			</div>
@@ -229,5 +229,20 @@
 </footer>
 
 <script src="js/jquery-3.6.0.min.js"></script>
-<script></script>
+<script>
+	function votes(num) {
+		//alert(num); // ajax 통신을 추가 합니다
+		var xmlhttp = new XMLHttpRequest();
+		// 콜백함수 정의
+		xmlhttp.onreadystatechange = function() {
+			// 접속완료 && 접속성공
+			if(this.readyState == 4 && this.status == 200) {
+				alert(num+"번 게시글에 추천을 했습니다");
+			}
+		}
+		xmlhttp.open("GET", "noticevote.jsp?no="+num, true);
+		xmlhttp.send();
+		
+	}
+</script>
 </html>

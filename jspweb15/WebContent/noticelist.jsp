@@ -158,6 +158,15 @@
 				<button type="button" class="iboard-default-button-small" onclick="search();">검색</button>
 			</form>
 		</div>
+		
+		<!-- 관리자 글쓰기 -->
+		<div class="iboard-document-action">
+			<div class="left">
+			</div>
+			
+			<div class="right">
+			<button type="button" onclick="location.href='noticewrite.jsp'">글쓰기</button></div>
+		</div>
 
 	</div>
 

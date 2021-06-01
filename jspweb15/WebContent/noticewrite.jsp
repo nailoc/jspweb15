@@ -54,7 +54,7 @@
 
 	<div id="iboard-thumbnail-editor">
 	
-		<form class="iboard-form" method="GET" action="">
+		<form class="iboard-form" id="frm_write" method="GET" action="noticewrtpro.jsp">
 		
 		<input type="hidden" name="board_id" value="hidden_val">
 		
@@ -106,11 +106,11 @@
 		
 		<div class="iboard-control">
 			<div class="left">
-				<button type="button">돌아가기</button>
+				<button type="button" onclick="history.back();">돌아가기</button>
 			</div>
 			
 			<div class="right">
-				<button type="button">저장하기</button>
+				<button type="button" onclick="bbs_write();">저장하기</button>
 			</div>
 		</div>
 		
@@ -145,6 +145,12 @@
 	});
 
 	CKEDITOR.replace('iboard_content');
+	
+	// 글쓰기
+	function bbs_write() {
+		frm = document.getElementById("frm_write");
+		frm.submit();
+	}
 </script>
 </body>
 </html>

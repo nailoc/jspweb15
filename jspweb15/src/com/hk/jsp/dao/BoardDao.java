@@ -15,6 +15,7 @@ public class BoardDao {
 	
 	private static Connection conn = null;
 	private static Statement stmt = null;
+	private static PreparedStatement pstmt = null;
 	private static ResultSet rs = null;
 	private static BoardDao instance = new BoardDao(); 
 	// 자신의 클래스에 대한 참조변수
@@ -40,6 +41,7 @@ public class BoardDao {
 		try {
 			if(conn!=null) { conn.close(); conn=null; }
 			if(stmt!=null) { stmt.close(); stmt=null; }
+			if(pstmt!=null) { pstmt.close(); pstmt=null; }
 			if(rs!=null) { rs.close(); rs=null; }
 			System.out.println("오라클 접속 종료 완료");
 		}catch(Exception e) {
@@ -99,6 +101,34 @@ public class BoardDao {
 		String sql = String.format("update board set views=views+1 where no='%s'", no);
 		int res = stmt.executeUpdate(sql);
 		closeDB();
+	}
+	
+	// noteicewrtpro.jsp 데이터 vo 저장
+	public int saveBoard(BoardVo brdvo) throws Exception {
+		int rst=0;
+		connectDB();
+		StringBuffer sb = new StringBuffer("");
+		sb.append("insert into board (no,title,write_name,contents,write_id,regdate)");
+		sb.append("\n values (seq_board.nextval, ?, ?, ?, 'admin', sysdate) ");
+		String sql = sb.toString();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, brdvo.getTitle());
+		pstmt.setString(2, brdvo.getWrite_name());
+		pstmt.setString(3, brdvo.getContents());
+		rst = pstmt.executeUpdate();
+		closeDB();
+		return rst;
+	}
+	
+	// noticevote.jsp 추천 증가
+	public int increaseBoardVote(String no) throws Exception {
+		int rst = 0;
+		//String no = "1"; // 1번게시물 추천
+		connectDB();
+		String sql = "update board set votes=votes+1 where no="+no;
+		rst = stmt.executeUpdate(sql);
+		closeDB();
+		return rst;
 	}
 	
 
